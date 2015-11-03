@@ -12,6 +12,17 @@
       (add-to-list 'load-path org-lisp-dir)
       (require 'org))))
 
+;; load in a special "preload" file that will run before the init-hook. This
+;; gives us a chance to initialize some things that need to run before the
+;; `after-init-hook` is fired, such as desktop mode.
+(let*
+    ((starter-kit-dir (file-name-directory (or load-file-name (buffer-file-name))))
+     (plain (concat starter-kit-dir "starter-kit-preload.el")))
+  (cond
+   ((file-exists-p plain) (load plain))
+   )
+  )
+
 ;; load the starter kit from the `after-init-hook' so all packages are loaded
 (add-hook 'after-init-hook
  `(lambda ()
