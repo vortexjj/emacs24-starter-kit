@@ -114,9 +114,7 @@ Clear the compilation buffer between test runs.
      (defun flymake-ruby-init ()
        (let* ((temp-file (flymake-init-create-temp-buffer-copy
                           'flymake-create-temp-inplace))
-              (local-file (file-relative-name
-                           temp-file
-                           (file-name-directory buffer-file-name))))
+              (local-file (file-truename temp-file)))
          (list "ruby" (list "-c" local-file))))
 
      (push '(".+\\.rb$" flymake-ruby-init) flymake-allowed-file-name-masks)
