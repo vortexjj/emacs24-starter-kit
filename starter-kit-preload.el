@@ -1,0 +1,1 @@
+/Users/justin/code/vortexjj/emacs/emacs24-preload.el
